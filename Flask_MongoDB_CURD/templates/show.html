@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+    integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+<title>Flask Sample App</title>
+    <title>Flask Sample App</title>
+</head>
+
+<body>
+
+    <nav class="navbar navbar-expand-lg bg-primary navbar-dark">
+        <a class="navbar-brand" href="/">Flask MongoDB CURD Application</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+    </nav>
+<div class="container">
+    <div class="card my-2">
+        <div class="card-body">
+            <h5 class="card-title text-center">Flask CURD Operations</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-center">Following Table will show data that is present in MongoDB
+                database</h6>
+                <div class="text-center">
+                <a href="/" class="btn btn-sm btn-primary"><b><i class="fas fa-backward"></i> BACK TO FORM </b></a>
+                </div>
+            <hr>
+            <table class="table table-bordered text-center">
+                <thead>
+                    <tr>
+                        <th scope="col">Name</th>
+                        <th scope="col">Mobile no.</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Comments</th>
+                        <th colspan="2">Operations</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for student in details %}
+                    <tr>
+                        <td>{{ student['name'] }}</td>
+                        <td>{{ student['mobile']}}</td>
+                        <td>{{ student['address']}}</td>
+                        <td>{{ student['comment']}}</td>
+                        <td><a href="/update/{{ student['_id']}}" class="btn btn-sm btn-warning"><b><i class="fas fa-edit"></i> UPDATE</b></a></td>
+                        <td><a href="/delete/{{ student['_id']}}" class="btn btn-sm btn-danger"><b><i class="fas fa-trash"></i> DELETE</b></a></td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
