@@ -1,0 +1,24 @@
+ body{
+            background-color: #333036;
+            font-family: cursive;
+        }
+.qcard  {
+            display:flex;
+            justify-content: center;
+            align-self: center;
+            height: 500px;
+            align-items: center;
+        }
+        .card{
+            background-color: #00C9A3;
+            color: white;
+            position: relative;
+        }
+        .bt{
+            margin-top: 40px;
+            color: white;
+            background-color: #00C9A3;
+        }
+        .auth{
+            margin-left: 500px;
+        }
