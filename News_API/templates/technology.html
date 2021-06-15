@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <!----Google material icons -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <title>Technology News | WORLDTIMES</title>
+    <style>
+        .card {
+            border: none;
+        }
+    </style>
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg  navbar-light bg-white">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/">WORLDTIMES</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/business">BUSINESS</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/entertainment">ENTERTAINMENT</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/general">GENERAL</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/health">HEALTH</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/science">SCIENCE</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="/technology">TECHNOLOGY</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container bg-white">
+        <div class="jumbotron m-4 p-4">
+            <h1 class="display-4">Technology</h1>
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                    <li class="breadcrumb-item" aria-current="page">Technology</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+    <div class="container bg-white">
+        <div class="jumbotron m-4 p-2">
+            {% for top in range(num) %}
+            <div class="card mb-3 bg-white">
+                <div class="row gx-5">
+                    <div class="col-md-4">
+                        <img src="{{ News['articles'][top]['urlToImage'] }}" class="img-thumbnail border-0" alt="...">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ News['articles'][top]['title'] }}</h5>
+                            <div class="d-flex align-items-center">
+                                <span class="material-icons fs-5">person</span>&nbsp;
+                                <label class="fs-6">{{ News['articles'][top]['source']['name'] }}</label>&nbsp;
+                                <span class="material-icons fs-5 ">today</span>&nbsp;
+                                <label class="fs-6">{{ News['articles'][top]['publishedAt'] }}</label>
+                            </div>
+                            <p class="card-text">{{ News['articles'][top]['description'] }}</p>
+                            <a href="{{ News['articles'][top]['url'] }}" class="btn btn-sm btn-dark">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+    <div class="footer bg-white p-4">
+        <div class="container">
+            <div class="row gx-3">
+                <div class="col-md-4">
+                    <h2>WORLDTIME</h2>
+                    <br>
+                    <p>Newspaper is your news, entertainment, music fashion website. We provide you with the latest
+                        breaking news and videos
+                        straight from the entertainment industry.</p>
+
+                </div>
+                <div class="col-md-4">
+                    <h4>Categories</h4>
+                    <ul class="list-group list-group-flush">
+                        <a href="#" class=" mb-2 list-group-item list-group-item-action border-0">Bushiness</a>
+                        <a href="#" class=" mb-2 list-group-item list-group-item-action border-0">Entertainment</a>
+                        <a href="#" class=" mb-2 list-group-item list-group-item-action  border-0">General</a>
+                        <a href="#" class=" mb-2 list-group-item list-group-item-action border-0">Health</a>
+                        <a href="#" class="list-group-item list-group-item-action border-0">Science</a>
+                        <a href="#" class="list-group-item list-group-item-action border-0">Technology</a>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <p><b>© 2020 All rights reserved.</b></p>
+                    <a href="#" class="list-group-item  border-0">Advertise</a>
+                    <a href="#" class="list-group-item border-0">About</a>
+                    <a href="#" class="list-group-item  border-0">Events</a>
+                    <a href="#" class="list-group-item  border-0">Write for Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
