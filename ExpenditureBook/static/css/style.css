@@ -1,0 +1,22 @@
+ 
+        * {
+            font-family: 'Poppins', sans-serif;
+            
+        }
+
+        .material-icons-outlined {
+            color: royalblue;
+        }
+
+        .card-icons {
+            font-size: 25px;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        .material-icons-outlined:hover{
+
+            transform: rotate(360deg);
+            transition: transform 1s ease-in-out;
+        }

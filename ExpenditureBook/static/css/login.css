@@ -1,0 +1,26 @@
+
+*{
+  font-family: 'Poppins', sans-serif;
+}
+
+html,body
+{
+    height: 100%;
+}
+
+body
+{
+    display: flex;
+    align-items: center;
+}
+.material-icons-outlined
+{
+    color: royalblue;
+}
+.card-icons
+ {
+            font-size: 80px;
+}
+.container{
+  box-shadow: 10px 10px 5px grey;
+}

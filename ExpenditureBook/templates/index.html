@@ -1,0 +1,263 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.25/css/dataTables.bootstrap5.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Material+Icons+Outlined" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@700&display=swap" rel="stylesheet">
+    <title>Admin Panel | ExpenditureBook</title>
+    <!--css-------->
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/style.css') }}">
+
+
+
+
+</head>
+
+<body class="bg-light">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white">
+        <div class="container-fluid">
+            <a data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+                <span class="align-middle material-icons-outlined">
+                    menu
+                </span>
+            </a>
+            <a class="navbar-brand" href="#">&nbsp;ExpenditureBook</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
+                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                </ul>
+
+                <ul class="navbar-nav">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <span class="material-icons-outlined">account_circle</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                        </ul>
+                    </li>
+                    <ul>
+            </div>
+        </div>
+    </nav>
+
+    <!--sideBar ------->
+    <div class="offcanvas offcanvas-start w-10" tabindex="-1" id="offcanvasExample"
+        aria-labelledby="offcanvasExampleLabel">
+        <div class="offcanvas-header">
+            <h2 class="offcanvas-title" id="offcanvasExampleLabel"><span class="material-icons-outlined">
+                    dashboard
+                </span>
+                DashBoard</h2>
+
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <hr>
+        <div class="offcanvas-body">
+
+        </div>
+    </div>
+
+    <div class="container mt-3">
+        <div class="row gy-2">
+            <div class="col-md-6">
+                <div class="card border-0">
+                    <div class="card-body d-flex align-items-center">
+                        <span class="p-2 card-icons material-icons-outlined">
+                            account_circle
+                        </span>
+                        <span>{{ session['name']}}</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 ">
+                <div class="card border-0 ">
+                    <div class="card-body d-flex align-items-center">
+                        <span class="p-2 card-icons material-icons-outlined">
+                            credit_card
+                        </span>
+                        <span id="money">
+                           {{ total['credit']|default(0) - (total['home']|default(0) + total['education']|default(0))}}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><div class="container mt-3">
+        <div class="row gy-2">
+            <div class="col-md-4">
+                <div class="card border-0">
+                    <div class="card-body d-flex align-items-center">
+                        <span class="p-2 card-icons material-icons-outlined">
+                            account_balance_wallet
+                        </span>
+                        <span>Money Added(&#x20B9): &nbsp;{{ total['credit']}}</span>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0">
+                    <div class="card-body d-flex align-items-center">
+                        <span class="p-2 card-icons material-icons-outlined">
+                            school
+                        </span>
+                        <span id="money">
+                            Education Expenses(&#x20B9): &nbsp;{{ total['education'] }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card border-0">
+                    <div class="card-body d-flex align-items-center">
+                        <span class="p-2 card-icons material-icons-outlined">
+                            home
+                        </span>
+                        <span id="money">
+                           Home Expenses(&#x20B9): &nbsp;{{ total['home'] }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="container mt-3 bg-white p-4">
+        <div class="row">
+            <div class="table-responsive col-md-8 col-sm-12 mb-2">
+                <span class="align-middle material-icons-outlined mb-2">
+                    receipt_long
+                </span>Expenses table
+                <table class="table table-bordered" id="expense_table">
+                    <thead>
+                        <tr class="text-center">
+                            <th>Purpose</th>
+                            <th>category</th>
+                            <th>Sum(&#x20B9)</th>
+                            <th>date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for bill in bills%}
+                        <tr>
+                            <td class="text-start">{{ bill['purpose']}}</td>
+                            <td class="text-end">{{ bill['category']}}</td>
+                            <td class="text-end">{{ bill['total']}}</td>
+                            <td class="text-end">{{ bill['date']}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div class="col-md-4 col-sm-12 mb-2">
+                <span class="align-middle material-icons-outlined">
+                    sell
+                </span>
+                <span>Add Your Bills</span>
+                <div>
+                    <div class="card border-1 mb-2" style="border-top: 0;">
+                        <div class="card-header bg-danger text-white">
+                            Add your Expenses
+                        </div>
+                        <div class="card-body">
+                            <form id="add_expenses">
+                                <div class="mb-3">
+                                    <label for="exampleInputName" class="form-label">Purpose</label>
+                                    <input type="text" class="form-control" id="exampleInputName" name="purpose"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputPassword1" class="form-label">Sum</label>
+                                    <input type="text" class="form-control" id="exampleInputPassword1" name="sum"
+                                        required>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="exampleInputDate" class="form-label">Date</label>
+                                    <input type="date" class="form-control" id="exampleInputDate" name="date" required>
+                                </div>
+                                <div class="mb-3">
+                                    <input class="form-check-input" type="radio" name="bill_type" value="home" checked>
+                                    <label class="form-check-label" for="inlineRadio1">
+                                        <span class="material-icons-outlined">
+                                            home
+                                        </span>
+                                    </label>
+
+                                    <input class="form-check-input" type="radio" name="bill_type" value="education">
+                                    <label class="form-check-label" for="inlineRadio1">
+                                        <span class="material-icons-outlined">
+                                            school
+                                        </span>
+                                    </label>
+                                    
+                                </div>
+                                <button type="submit" class="btn btn-primary btn-sm" id="add_purpose">Add</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card border-1 mb-2" style="border-top: 0;">
+                    <div class="card-header bg-success text-white">
+                        Add Cash
+                    </div>
+                    <div class="card-body">
+                        <form id="add_cash">
+                            <div class="mb-3">
+                                <label for="purpose" class="form-label">purpose</label>
+                                <input type="text" class="form-control" name="purpose" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Sum</label>
+                                <input type="text" class="form-control" name="money" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Date</label>
+                                <input type="date" class="form-control" name="add_date" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary btn-sm" id="credit">Add Cash</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+        crossorigin="anonymous"></script>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.25/js/dataTables.bootstrap5.min.js"></script>
+    <script src="{{ url_for('static',filename='js/AddCash.js')}}"></script>
+    <script src="{{ url_for('static',filename='js/Expenses.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            $('#expense_table').DataTable({
+
+            });
+        });
+    </script>
+</body>
+
+</html>
