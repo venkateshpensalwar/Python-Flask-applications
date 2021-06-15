@@ -10,4 +10,4 @@ def index():
 @app.route('/sub', methods=['POST'])
 def sub():
     name = request.form['name']
-    return  name
+    return name
