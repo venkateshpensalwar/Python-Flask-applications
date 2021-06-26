@@ -31,7 +31,13 @@ Reload the docker daemon
 systemctl daemon-reload
 
 Restart the container
-sudo service docker restart
+systemctl restart docker
+
+Start the apache server
+systemctl start httpd
+
+copy docker.py file to /var/www/cgi-bin/
+and file should be executable
 ```
 Now using Following command run your application:-
 ```shell
