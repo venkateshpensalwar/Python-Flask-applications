@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="{{url_for('static', filename='css/index.css')}}">
+    <title>Dashboard | Merchant</title>
+</head>
+
+<body style="background-color: #e9ebee;">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Docker Merchant</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo01"
+            aria-controls="navbarTogglerDemo01" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo01">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+               
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Images
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/images">Images</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item dropdown ">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                       Containers
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/containers">Container</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--Status container-->
+<div class="container mt-3">
+    <h1 class="text-center">Accelerate how you build, share, and</h1>
+    <h1 class="text-center">run modern applications.</h1>
+    </div>
+
+    <div class="container my-4">
+        <div class="row" id="hero-section">
+            <div class="col-md-4"><span>11 Million +</span><br>Developers</div>
+            <div class="col-md-4"><span>7 Million +</span><br>Applications</div>
+            <div class="col-md-4"><span>13 Billion +</span><br>Monthly image downloads</div>
+        </div>
+    </div>
+
+    <img src="https://1000logos.net/wp-content/uploads/2017/07/Docker-Logo-768x227.png" class="img-fluid rounded mx-auto d-block">
+    <div class="container bg-light p-3 mb-3">
+        <form id="form">
+            <div class="mb-3">
+                <label class="form-label">[root@Master venkatesh]#</label>
+            <input class="form-control" type="text" placeholder="Enter Docker Command" id="x" name="x">
+            </div>
+            <button type="submit" id="submit" class="btn btn-sm btn-primary border-0">submit</button>
+        </form>
+        <pre class="res m-3">
+
+        </pre>
+        </div>
+        <div class="container mb-4">
+            <h1 class="text-center mb-3">Use your favorite tools</h1>
+            <div class="text-center">
+            <img src="{{ url_for ('static',filename='img/bitbucket_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/circleci_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/gitlab_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/jenkins_logo.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/jfrog_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/mongo.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/nginx_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/octocat_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/redis_full.png')}}" alt="">
+            <img src="{{ url_for('static',filename='img/visualstudio_code-card.png')}}" alt="">
+        </div>
+        <div>
+            <h1 class="text-center m-3">Go from code to cloud securely with <br> partners that you trust</h1>
+            <h4 class="text-center text-muted">Trust that your development pipeline workflow will work in any <br> environment – locally and in the cloud.</h4>
+            <div class="row">
+                <div class="card m-2" style="width: 25rem;">
+                    <img class="card-img-top" src="{{ url_for('static',filename='img/aws_sm_logo.png')}}" alt="">
+                    <div class="card-body">
+                        <p class="card-text">Simplify the development of your multi-container applications from Docker CLI to Amazon ECS on AWS Fargate.</p>
+                    </div>
+                </div>
+                <div class="card m-2" style="width: 25rem;">
+                    <img class="card-img-top" style="margin-top: 80px; margin-bottom: 100px;"
+                        src="{{ url_for('static',filename='img/MS-Azure-sol.png')}}" alt="">
+                    <div class="card-body">
+                        <p class="card-text">Seamlessly bring container applications from your local machine and run them in Azure container Instances.</p>
+                    </div>
+                    <img class="card-img-bottom" src="" alt="">
+                </div>
+                <div class="card m-2" style="width: 25rem;">
+                    <img class="card-img-top"
+                        src="{{url_for('static',filename='img/jfrog_sm_logo.png')}}"
+                        alt="">
+                    <div class="card-body">
+                        <p class="card-text">Simplify the development of your multi-container applications from Docker CLI to Amazon ECS
+                            on AWS Fargate.</p>
+                    </div>
+                    <img class="card-img-bottom" src="" alt="">
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="bg-primary text-center text-white" style="padding: 50px;">
+           <h1>Accelerate your application<br>
+        development today.</h1>
+        </div>
+
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="{{ url_for('static',filename='js/docker.js')}}"></script>
+
+</body>
+
+</html>
