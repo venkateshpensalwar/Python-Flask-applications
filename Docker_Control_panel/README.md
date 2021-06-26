@@ -33,3 +33,8 @@ systemctl daemon-reload
 Restart the container
 sudo service docker restart
 ```
+Now using Following command run your application:-
+```shell
+set FLASK_ENV = development or production
+flask run
+```
